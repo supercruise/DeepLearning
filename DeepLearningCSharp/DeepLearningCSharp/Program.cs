@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,9 @@ namespace DeepLearningCSharp
 
             DataGenerator dg = new DataGenerator(w1, w2, bias, numberOfExample);
             dg.GenerateInputAndLabel();
+
+            string filePath = @"F:\Hanjin.Hu\Research\DeepLearning\DeepLearning\LinReg.csv";
+            dg.OutputData(filePath);
 
             List<double> inputX1 = dg.GeneratedX1.ToList();
             List<double> inputX2 = dg.GeneratedX2.ToList();
@@ -195,6 +199,23 @@ namespace DeepLearningCSharp
             generatedX1.Clear();
             generatedX2.Clear();
             generatedLabelY.Clear();
+        }
+
+        public void OutputData(string filePath)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < numExamples; ++i)
+            {
+                string s = string.Format("{0:f8},{1:f8},{2:f8}", generatedX1[i], generatedX2[i], generatedLabelY[i]);
+
+                sb.AppendLine(s);
+            }
+
+            using (StreamWriter sw = new StreamWriter(filePath))
+            {
+                sw.WriteLine(sb.ToString());
+            }
         }
 
         protected void GenerateX1()
