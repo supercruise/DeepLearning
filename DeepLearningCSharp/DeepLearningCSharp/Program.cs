@@ -28,8 +28,8 @@ namespace DeepLearningCSharp
             DataGenerator dg = new DataGenerator(w1, w2, bias, numberOfExample);
             dg.GenerateInputAndLabel();
 
-            string filePath = @"F:\Hanjin.Hu\Research\DeepLearning\DeepLearning\LinReg.csv";
-            dg.OutputData(filePath);
+            //string filePath = @"F:\Hanjin.Hu\Research\DeepLearning\DeepLearning\LinReg.csv";
+            //dg.OutputData(filePath);
 
             List<double> inputX1 = dg.GeneratedX1.ToList();
             List<double> inputX2 = dg.GeneratedX2.ToList();
@@ -272,6 +272,78 @@ namespace DeepLearningCSharp
         public static double CalcSquareLoss(double yHat, double y)
         {
             return 0.5 * (yHat - y) * (yHat - y);
+        }
+    }
+
+    // Activation Functions
+    public class AcFun
+    {
+        public static double Sigmoid(double z)
+        {
+            return 1.0 / (1.0 + Math.Exp(-1 * z));
+        }
+
+        public static double ReLU(double z)
+        {
+            return Math.Max(0.0, z);
+        }
+
+        public static double Tanh(double z)
+        {
+            return Math.Tanh(z);
+        }
+
+        public static double BinaryStep(double z)
+        {
+            if (z > 0.0)
+                return 1.0;
+            else
+                return 0.0;
+        }
+
+        public static List<double> Softmax(List<double> z)
+        {
+            if (z == null)
+                return null;
+
+            if (z.Count == 0)
+                return null;
+
+            double sumExp = 0.0;
+
+            for (int i = 0; i < z.Count; ++i)
+            {
+                sumExp += Math.Exp(z[i]);
+            }
+
+            List<double> results = new List<double>();
+
+            for (int i = 0; i < z.Count; ++i)
+            {
+                double expZ = Math.Exp(z[i]);
+
+                results.Add(expZ / sumExp);
+            }
+
+            return results;
+        }
+
+        public static double SoftPlus(double z)
+        {
+            return Math.Log(1.0 + Math.Exp(z));
+        }
+
+        public static double Gaussian(double z)
+        {
+            return Math.Exp(-1.0 * z * z);
+        }
+
+        public static double Sinc(double z)
+        {
+            if (Math.Abs(z) < 0.00001)
+                return 1.0;
+            else
+                return Math.Sin(z) / z;
         }
     }
 }
