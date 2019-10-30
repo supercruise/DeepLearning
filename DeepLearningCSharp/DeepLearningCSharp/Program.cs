@@ -16,6 +16,12 @@ namespace DeepLearningCSharp
             double w1 = 2.0;
             double w2 = -3.4;
             double bias = 4.2;
+
+            Console.WriteLine(string.Format("The true W1 is      {0:f4}", w1));
+            Console.WriteLine(string.Format("The true W2 is      {0:f4}", w2));
+            Console.WriteLine(string.Format("The true bias is    {0:f4}", bias));
+            Console.WriteLine();
+
             int numberOfExample = 1000;
 
             DataGenerator dg = new DataGenerator(w1, w2, bias, numberOfExample);
@@ -44,8 +50,8 @@ namespace DeepLearningCSharp
                 double linReg = DLHelper.CalcLinReg(testX1[i], testX2[i], w1, w2, bias);
 
                 //Console.WriteLine(string.Format("The real house price is      {0:f6}", testY[i]));
-                Console.WriteLine(string.Format("The linear reg price is      {0:f6}", linReg));
-                Console.WriteLine(string.Format("The predicted house price is {0:f6}", predictedY));
+                Console.WriteLine(string.Format("The linear reg price is      {0:f4}", linReg));
+                Console.WriteLine(string.Format("The predicted house price is {0:f4}", predictedY));
                 Console.WriteLine();
             }
 
@@ -131,9 +137,9 @@ namespace DeepLearningCSharp
             trainedW2 = w2;
             trainedBias = bias;
 
-            Console.WriteLine(string.Format("The trained W1 is {0:f2}", trainedW1));
-            Console.WriteLine(string.Format("The trained W2 is {0:f2}", trainedW2));
-            Console.WriteLine(string.Format("The trained bias is {0:f2}", trainedBias));
+            Console.WriteLine(string.Format("The trained W1 is   {0:f4}", trainedW1));
+            Console.WriteLine(string.Format("The trained W2 is   {0:f4}", trainedW2));
+            Console.WriteLine(string.Format("The trained bias is {0:f4}", trainedBias));
             Console.WriteLine();
         }
 
