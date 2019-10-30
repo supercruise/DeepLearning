@@ -1,0 +1,10 @@
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\bin\Debug\DeepLearningCSharp.exe.config
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\bin\Debug\DeepLearningCSharp.exe
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\bin\Debug\DeepLearningCSharp.pdb
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\obj\Debug\DeepLearningCSharp.csprojAssemblyReference.cache
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\obj\Debug\DeepLearningCSharp.csproj.CoreCompileInputs.cache
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\obj\Debug\DeepLearningCSharp.exe
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\obj\Debug\DeepLearningCSharp.pdb
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\bin\Debug\MathNet.Numerics.dll
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\bin\Debug\MathNet.Numerics.xml
+F:\Hanjin.Hu\Research\DeepLearning\DeepLearningCSharp\DeepLearningCSharp\obj\Debug\DeepLearningCSharp.csproj.CopyComplete
