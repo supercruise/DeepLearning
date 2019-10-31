@@ -153,6 +153,14 @@ namespace DeepLearningCSharp
         }
     }
 
+    public class LossFunctions
+    {
+        public static double CalcSquareLoss(double yHat, double y)
+        {
+            return 0.5 * (yHat - y) * (yHat - y);
+        }
+    }
+
     public class DataGenerator
     {
         protected double trueW1;
@@ -269,9 +277,22 @@ namespace DeepLearningCSharp
             return x1 * w1 + x2 * w2 + bias;
         }
 
-        public static double CalcSquareLoss(double yHat, double y)
+        public static double CalcLinReg(List<double> x, List<double> w, double bias)
         {
-            return 0.5 * (yHat - y) * (yHat - y);
+            if (x == null || w == null)
+                return 0.0;
+
+            if (x.Count != w.Count)
+                return 0.0;
+
+            double sum = 0.0;
+
+            for (int i = 0; i < x.Count; ++i)
+                sum += x[i] * w[i];
+
+            sum += bias;
+
+            return sum;
         }
     }
 
