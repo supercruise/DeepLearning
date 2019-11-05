@@ -13,6 +13,15 @@ namespace DeepLearningCSharp
     {
         static void Main(string[] args)
         {
+            //TestLinearRegression();
+
+            TestSoftmaxRegression();
+
+            Console.ReadLine();
+        }
+
+        static void TestLinearRegression()
+        {
             // Generate training data set.
             double w1 = 2.0;
             double w2 = -3.4;
@@ -58,8 +67,33 @@ namespace DeepLearningCSharp
                 Console.WriteLine(string.Format("The predicted house price is {0:f4}", predictedY));
                 Console.WriteLine();
             }
+        }
 
-            Console.ReadLine();
+        static void TestSoftmaxRegression()
+        {
+            //Normal normalDist = new Normal(0.0, 1.0);
+            //List<double> input = new List<double>();
+            //input.Add(normalDist.Sample());
+            //input.Add(normalDist.Sample());
+            //input.Add(normalDist.Sample());
+            //input.Add(normalDist.Sample());
+            //input.Add(normalDist.Sample());
+
+            //List<double> output = AcFun.Softmax(input);
+            //double sum = 0.0;
+
+            //foreach (double d in output)
+            //{
+            //    Console.WriteLine(d);
+            //    sum += d;
+            //}
+
+            //Console.WriteLine(sum);
+
+            //Console.WriteLine(DLHelper.ArgMax(output));
+
+            SoftmaxRegressionNN srnn = new SoftmaxRegressionNN();
+            srnn.Test();
         }
     }
 
@@ -150,6 +184,57 @@ namespace DeepLearningCSharp
         public double Predict(double x1, double x2)
         {
             return trainedW1 * x1 + trainedW2 * x2 + trainedBias;
+        }
+    }
+
+    public class SoftmaxRegressionNN
+    {
+        protected double CalculateAccuracy(List<int> yHat, List<int> y)
+        {
+            if (yHat == null && y == null)
+                return 1.0;
+            else if (yHat == null || y == null)
+                return 0.0;
+            else if (yHat.Count != y.Count)
+                return 0.0;
+
+            int count = yHat.Count;
+            int match = 0;
+
+            for (int i = 0; i < count; ++i)
+            {
+                if (yHat[i] == y[i])
+                    match++;
+            }
+
+            double accuracy = Convert.ToDouble(match) / Convert.ToDouble(count);
+
+            return accuracy;
+        }
+
+        protected List<double> CalculateCrossEntropy(List<double> lst)
+        {
+            if (lst == null)
+                return null;
+
+            List<double> results = new List<double>();
+
+            foreach (double d in lst)
+                results.Add(-1 * Math.Log(d));
+
+            return results;
+        }
+
+        public void Test()
+        {
+            List<double> lst = new List<double>();
+
+            lst.Add(0.1);
+            lst.Add(0.5);
+
+            List<double> results = CalculateCrossEntropy(lst);
+
+            Console.WriteLine();
         }
     }
 
@@ -293,6 +378,29 @@ namespace DeepLearningCSharp
             sum += bias;
 
             return sum;
+        }
+
+        public static int ArgMax(List<double> lst)
+        {
+            int index = -1;
+
+            if (lst == null || lst.Count == 0)
+                return index;
+
+            double max = double.MinValue;
+
+            for (int i = 0; i < lst.Count; ++i)
+            {
+                double d = lst[i];
+
+                if (d > max)
+                {
+                    max = d;
+                    index = i;
+                }
+            }
+
+            return index;
         }
     }
 
